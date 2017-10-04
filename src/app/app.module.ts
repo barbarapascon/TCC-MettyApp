@@ -9,6 +9,8 @@ import { HomePage } from '../pages/home/home';
 import { ProfessoresPage } from '../pages/professores/professores';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AreaDoUsuarioPage } from '../pages/area-do-usuario/area-do-usuario';
+import { GrupoListaPage } from '../pages/grupo-lista/grupo-lista';
+import { GrupoDetalhePage } from '../pages/grupo-detalhe/grupo-detalhe';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,7 +25,10 @@ import { IntroPage } from "../pages/intro/intro";
     TabsPage,
     ProfessoresPage,
     IntroPage,
-    AreaDoUsuarioPage
+    AreaDoUsuarioPage,
+    GrupoListaPage,
+    GrupoDetalhePage
+    
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,9 @@ import { IntroPage } from "../pages/intro/intro";
     TabsPage,
     ProfessoresPage,
     IntroPage,
-    AreaDoUsuarioPage
+    AreaDoUsuarioPage,
+    GrupoListaPage,
+    GrupoDetalhePage
   ],
   providers: [
     StatusBar,
