@@ -7,6 +7,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { IntroPage } from "../pages/intro/intro";
 import {AreaDoUsuarioPage} from "../pages/area-do-usuario/area-do-usuario";
 import { HomePage } from '../pages/home/home';
+import {EscolhaProfessorPage} from '../pages/escolha-professor/escolha-professor';
 @Component({
   templateUrl: 'app.html'
 })

@@ -11,6 +11,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { AreaDoUsuarioPage } from '../pages/area-do-usuario/area-do-usuario';
 import { GrupoListaPage } from '../pages/grupo-lista/grupo-lista';
 import { GrupoDetalhePage } from '../pages/grupo-detalhe/grupo-detalhe';
+import { ChatPage } from '../pages/chat/chat';
+import {EscolhaProfessorPage} from '../pages/escolha-professor/escolha-professor';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -27,7 +29,9 @@ import { IntroPage } from "../pages/intro/intro";
     IntroPage,
     AreaDoUsuarioPage,
     GrupoListaPage,
-    GrupoDetalhePage
+    GrupoDetalhePage,
+    ChatPage,
+    EscolhaProfessorPage
     
   ],
   imports: [
@@ -45,7 +49,9 @@ import { IntroPage } from "../pages/intro/intro";
     IntroPage,
     AreaDoUsuarioPage,
     GrupoListaPage,
-    GrupoDetalhePage
+    GrupoDetalhePage,
+    ChatPage,
+    EscolhaProfessorPage
   ],
   providers: [
     StatusBar,
