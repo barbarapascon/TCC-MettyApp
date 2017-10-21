@@ -5,30 +5,8 @@
 </ion-header>
 
 <ion-content padding>
-
-   
-
-  <h2>Login</h2>
-  <p>
-    Faça seu login e comece a praticar!
-  </p>
-  <p>
-    <ion-list>
-
-  <ion-item>
-    <ion-label fixed>Usuário</ion-label>
-    <ion-input type="text" value=""></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label fixed>Senha</ion-label>
-    <ion-input type="password"></ion-input>
-  </ion-item>
-
-</ion-list><br>
-   <button ion-button full (click)="irParaAreadoUsuario()">Login</button>
-  </p><br><br>
-           
-  <img src="assets/images/home_img1.png" width="300px" height="200px">
-  
+  <p>Username: {{(profileData | async)?.username}}</p>
+  <p>First Name: {{(profileData | async)?.firstName}}</p>
+  <p>Last Name: {{(profileData | async)?.lastNme}}</p>
+<button ion-button (click)="irParaAreadoUsuario()">Area do usuario</button>
 </ion-content>

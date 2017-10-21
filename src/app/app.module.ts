@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, IonicPageModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
@@ -13,10 +13,25 @@ import { GrupoListaPage } from '../pages/grupo-lista/grupo-lista';
 import { GrupoDetalhePage } from '../pages/grupo-detalhe/grupo-detalhe';
 import { ChatPage } from '../pages/chat/chat';
 import {EscolhaProfessorPage} from '../pages/escolha-professor/escolha-professor';
+import { RegisterPage } from '../pages/register/register';
+import {FilePath} from '@ionic-native/file-path';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IntroPage } from "../pages/intro/intro";
+import { FIREBASE_CONFIG } from "./app.firebase.config";
+import{AngularFireModule} from 'angularfire2';
+import{AngularFireAuthModule} from 'angularfire2/auth';
+import { LoginPage } from "../pages/login/login";
+import { AngularFireDatabaseModule } from "angularfire2/database";
+import { ProfilePage } from "../pages/profile/profile";
+import { FirebaseProvider } from '../providers/firebase/firebase';
+import { AuthProvider } from '../providers/auth/auth';
+import { UserProvider } from '../providers/user/user';
+import { ChatProvider } from '../providers/chat/chat';
+import { ImghandlerProvider } from '../providers/imghandler/imghandler';
+import { FileChooser } from "@ionic-native/file-chooser";
+
 
 @NgModule({
   declarations: [
@@ -31,12 +46,19 @@ import { IntroPage } from "../pages/intro/intro";
     GrupoListaPage,
     GrupoDetalhePage,
     ChatPage,
-    EscolhaProfessorPage
+    EscolhaProfessorPage,
+    LoginPage,
+    ProfilePage,
+    RegisterPage
     
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    //IonicPageModule.forChild(LoginPage)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -51,12 +73,23 @@ import { IntroPage } from "../pages/intro/intro";
     GrupoListaPage,
     GrupoDetalhePage,
     ChatPage,
-    EscolhaProfessorPage
+    EscolhaProfessorPage,
+     LoginPage,
+    ProfilePage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FirebaseProvider,
+    AuthProvider,
+    UserProvider,
+    ChatProvider,
+    ImghandlerProvider,
+    File,
+    FilePath,
+    FileChooser
   ]
 })
 export class AppModule {}

@@ -1,28 +1,54 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { AngularFireAuth } from "angularfire2/auth";
+import { AngularFireDatabase, FirebaseObjectObservable } from "angularfire2/database";
+import { ProfilePage } from "../profile/profile";
+import { Profile } from "../../models/profile";
 
 
 
  ({ templateUrl: "pages/area-do-usuario/area-do-usuario.html"})
 
-/**
- * Generated class for the AreaDoUsuarioPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-area-do-usuario',
   templateUrl: 'area-do-usuario.html',
 })
 export class AreaDoUsuarioPage {
-
-  constructor(public navCtrl: NavController) {
+  profileData: FirebaseObjectObservable<Profile>
+  constructor(private afAuth: AngularFireAuth, private toast: ToastController,private afDatabase: AngularFireDatabase, 
+    public navCtrl: NavController,public navParams: NavParams) {
   } 
 
-  
+    ionViewWillLoad(){
+    this.afAuth.authState.subscribe(data =>{
+    if(data && data.email && data.uid){
+    
+   this.toast.create({
+        message:`wlcome to APP_NAME, ${data.email}`,
+        duration:3000
+    }).present();   
+      this.profileData = this.afDatabase.object(`profile/${data.uid}`)
+      this.profileData.subscribe(data => {
+          if (!data.firstName) {
+              this.navCtrl.setRoot(ProfilePage);
+          }
+      },
+     error => {
+      console.log("Error", error);
+     });
+    }
+  else{
+    this.toast.create({
+        message:`nao foi possivel achar dados`,
+        duration:3000
+    }).present();
+    
+  }
+  });
+
+  }
 
  irParaHomePage(){
             this.navCtrl.push(HomePage);
