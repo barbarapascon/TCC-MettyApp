@@ -11,14 +11,15 @@
 
     <ion-item>
       <ion-avatar item-start>
-        <img src="assets/images/marine.jpg" />
+        <div class="profile-image" (click)="editimage()">
+          <img src="{{avatar}}">
+        </div>
       </ion-avatar>
-      <h2>Marine Pimenta</h2>
-      <p>May 26, 1997</p>
+      <h2 (click)="editname()">{{(profileData | async)?.firstName}} {{(profileData | async)?.lastNme}}</h2>
+   
       <p>Inglês fluente, Português nativo.</p>
       <p>Username: {{(profileData | async)?.username}}</p>
-      <p>First Name: {{(profileData | async)?.firstName}}</p>
-      <p>Last Name: {{(profileData | async)?.lastNme}}</p>
+
     </ion-item>
 
     <img src="img/advance-card-bttf.png">
@@ -28,17 +29,20 @@
       <p color="grey">INTERESSES</p>
       <button ion-button class="button">Game of Thrones</button>
 
-      <button ion-button class="button">Nirvana</button> 
+      <button ion-button class="button">Nirvana</button>
       <button ion-button class="button">Veganismo</button>
       <button ion-button class="button">Florence and the Machine</button>
-       <button ion-button class="button">RBD</button>
+      <button ion-button class="button">RBD</button>
       <ion-icon name="add-circle" class="iconeadd"></ion-icon>
-   
+
       <p>GRUPOS</p>
       <button ion-button class="button">GRITO</button>
 
       <button ion-button class="button">LDRV</button> <button ion-button class="button">BERRO</button>
       <ion-icon name="add-circle" class="iconeadd"></ion-icon>
+      <div>
+        <button ion-button round outline color="danger" (click)="logout()">Logout</button>
+      </div>
     </ion-card-content>
 
 

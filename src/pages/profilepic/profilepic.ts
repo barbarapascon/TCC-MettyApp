@@ -46,7 +46,7 @@ export class ProfilepicPage {
     this.userservice.updateimage(this.imgurl).then((res: any) => {
       loader.dismiss();
       if (res.success) {
-        this.navCtrl.setRoot('TabsPage');
+        this.navCtrl.setRoot('ProfilePage');
       }
       else {
         alert(res);
@@ -55,7 +55,7 @@ export class ProfilepicPage {
   }
 
   proceed() {
-    this.navCtrl.setRoot('TabsPage');
+    this.navCtrl.setRoot('ProfilePage');
   }
 
 }

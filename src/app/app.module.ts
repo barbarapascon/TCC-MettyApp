@@ -15,6 +15,7 @@ import { ChatPage } from '../pages/chat/chat';
 import {EscolhaProfessorPage} from '../pages/escolha-professor/escolha-professor';
 import { RegisterPage } from '../pages/register/register';
 import {FilePath} from '@ionic-native/file-path';
+import {File} from '@ionic-native/file'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,6 +32,8 @@ import { UserProvider } from '../providers/user/user';
 import { ChatProvider } from '../providers/chat/chat';
 import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 import { FileChooser } from "@ionic-native/file-chooser";
+import { ProfilepicPage } from "../pages/profilepic/profilepic";
+import { RequestsProvider } from '../providers/requests/requests';
 
 
 @NgModule({
@@ -49,7 +52,8 @@ import { FileChooser } from "@ionic-native/file-chooser";
     EscolhaProfessorPage,
     LoginPage,
     ProfilePage,
-    RegisterPage
+    RegisterPage,
+    ProfilepicPage
     
   ],
   imports: [
@@ -76,7 +80,8 @@ import { FileChooser } from "@ionic-native/file-chooser";
     EscolhaProfessorPage,
      LoginPage,
     ProfilePage,
-    RegisterPage
+    RegisterPage,
+    ProfilepicPage
   ],
   providers: [
     StatusBar,
@@ -89,7 +94,8 @@ import { FileChooser } from "@ionic-native/file-chooser";
     ImghandlerProvider,
     File,
     FilePath,
-    FileChooser
+    FileChooser,
+    RequestsProvider
   ]
 })
 export class AppModule {}

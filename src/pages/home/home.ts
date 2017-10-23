@@ -5,6 +5,7 @@ import { AngularFireDatabase, FirebaseObjectObservable } from "angularfire2/data
 import { Profile } from "../../models/profile";
 import { ProfilePage } from "../profile/profile";
 import { AreaDoUsuarioPage } from "../area-do-usuario/area-do-usuario";
+import { ProfilepicPage } from "../profilepic/profilepic";
 
 @Component({
   selector: 'page-home',
@@ -31,7 +32,7 @@ export class HomePage {
       this.profileData = this.afDatabase.object(`profile/${data.uid}`)
       this.profileData.subscribe(data => {
           if (!data.firstName) {
-              this.navCtrl.setRoot(ProfilePage);
+              this.navCtrl.setRoot(ProfilepicPage);
           }
       },
      error => {
