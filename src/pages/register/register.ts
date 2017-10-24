@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { User } from "../../models/user";
-import { AngularFireAuth } from 'angularfire2/auth'
-import { HomePage } from "../home/home";
-import { LoginPage } from "../login/login";
-
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { UserProvider } from '../../providers/user/user';
+import { ProfilepicPage } from "../profilepic/profilepic";
 
 @IonicPage()
 @Component({
@@ -12,51 +9,47 @@ import { LoginPage } from "../login/login";
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-  user = {} as User;
-
-  constructor(public alertCtrl: AlertController,private afAuth: AngularFireAuth,
-    public navCtrl: NavController, public navParams: NavParams) {
+  newuser = {
+    firstName: '',
+    lastName:'',
+    email: '',
+    password: '',
+    displayName: ''
   }
-     goback() {
-    this.navCtrl.setRoot(LoginPage);
-  }
- showAlert(error) {
-    let alert = this.alertCtrl.create({
-      title: 'Ocorreu um erro!',
-      subTitle: error,
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-   showAlertok() {
-    let alert = this.alertCtrl.create({
-      title: 'registradoo!',
-      subTitle: 'Registrado com sucesso',
-      buttons: ['OK']
-    });
-    alert.present();
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userservice: UserProvider,
+              public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
   }
 
-  async register(user: User) {// procurar oq é uma async function
-    try {
-      const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password).then(result => {
-       
-          console.log(result);
-          this.showAlertok();
-          this.navCtrl.setRoot(HomePage);
-        
-      }).catch(error => {
-        this.showAlert(error.message);
-        console.log(error.name);
+  signup() {
+    var toaster = this.toastCtrl.create({
+      duration: 3000,
+      position: 'bottom'
+    });
+    if (this.newuser.email == '' || this.newuser.password == '' || this.newuser.displayName == '') {
+      toaster.setMessage('All fields are required dude');
+      toaster.present();
+    }
+    else if (this.newuser.password.length < 7) {
+      toaster.setMessage('Password is not strong. Try giving more than six characters');
+      toaster.present();
+    }
+    else {
+      let loader = this.loadingCtrl.create({
+        content: 'Please wait'
       });
-      console.log(result);
+      loader.present();
+      this.userservice.adduser(this.newuser).then((res: any) => {
+        loader.dismiss();
+        if (res.success)
+          this.navCtrl.push(ProfilepicPage);
+        else
+          alert('Error' + res);
+      })
     }
-    catch(e){
-    console.error(e);
-        this.showAlert(e.message);
-    }
-  }
+  }  
 
+  goback() {
+    this.navCtrl.setRoot('LoginPage');
+  }
 
 }
-

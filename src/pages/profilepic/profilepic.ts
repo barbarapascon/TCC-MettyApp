@@ -2,6 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ImghandlerProvider } from '../../providers/imghandler/imghandler';
 import { UserProvider } from '../../providers/user/user';
+import { ProfilePage } from "../profile/profile";
 /**
  * Generated class for the ProfilepicPage page.
  *
@@ -26,7 +27,7 @@ export class ProfilepicPage {
 
   chooseimage() {
     let loader = this.loadingCtrl.create({
-      content: 'Please wait'
+      content: 'Aguarde'
     })
     loader.present();
     this.imgservice.uploadimage().then((uploadedurl: any) => {
@@ -40,13 +41,13 @@ export class ProfilepicPage {
 
   updateproceed() {
     let loader = this.loadingCtrl.create({
-      content: 'Please wait'
+      content: 'Aguarde'
     })
     loader.present();
     this.userservice.updateimage(this.imgurl).then((res: any) => {
       loader.dismiss();
       if (res.success) {
-        this.navCtrl.setRoot('ProfilePage');
+        this.navCtrl.setRoot(ProfilePage);
       }
       else {
         alert(res);
@@ -55,7 +56,7 @@ export class ProfilepicPage {
   }
 
   proceed() {
-    this.navCtrl.setRoot('ProfilePage');
+    this.navCtrl.setRoot(ProfilePage);
   }
 
 }

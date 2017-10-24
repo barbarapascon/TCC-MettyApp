@@ -1,40 +1,124 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFireAuth } from "angularfire2/auth";
-import { Profile } from "../../models/profile";
-import { AngularFireDatabase } from 'angularfire2/database';
-import { HomePage } from "../home/home";
-//import { Camera, CameraOptions } from "@ionic-native/camera";
-import { storage } from "firebase/app";
+import { Component, NgZone } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { ImghandlerProvider } from '../../providers/imghandler/imghandler';
+import { UserProvider } from '../../providers/user/user';
 import firebase from 'firebase';
+import { Profile } from "../../models/profile";
+import { AngularFireDatabase } from "angularfire2/database";
 import { TabsPage } from "../tabs/tabs";
-
-
+import { AngularFireAuth } from "angularfire2/auth";
+/**
+ * Generated class for the ProfilePage page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
 @IonicPage()
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-  profile = {} as Profile;
-  //variaveis video do canal tending codes-hasnen
-  picdata: any;
-  picurl: any;
-  mypicref: any;
-
-  constructor(private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase,
-    public navCtrl: NavController, public navParams: NavParams) {
-    //codes hasnem
-    this.mypicref = firebase.storage().ref('/');
-    this.picurl= '../../assets/PROFILESEMFOTO.png';
+  avatar: string;
+  displayName: string;
+   profile = {} as Profile;
+  constructor(private afAuth: AngularFireAuth, private afDatabase: AngularFireDatabase,public navCtrl: NavController, public navParams: NavParams,
+    public userservice: UserProvider, public zone: NgZone, public alertCtrl: AlertController,
+    public imghandler: ImghandlerProvider) {
   }
-  //função takepicuture code hasnem
- 
-  createProfile() {
+createProfile() {
     this.afAuth.authState.take(1).subscribe(auth => {
       this.afDatabase.object(`profile/${auth.uid}`).set(this.profile)
         .then(() => this.navCtrl.setRoot(TabsPage));
     })
   }
+  ionViewWillEnter() {
+    this.loaduserdetails();
+  }
+
+  loaduserdetails() {
+    this.userservice.getuserdetails().then((res: any) => {
+      this.displayName = res.displayName;
+      this.zone.run(() => {
+        this.avatar = res.photoURL;
+      })
+    })
+  }
+
+  editimage() {
+    let statusalert = this.alertCtrl.create({
+      buttons: ['okay']
+    });
+    this.imghandler.uploadimage().then((url: any) => {
+      this.userservice.updateimage(url).then((res: any) => {
+        if (res.success) {
+          statusalert.setTitle('Updated');
+          statusalert.setSubTitle('Your profile pic has been changed successfully!!');
+          statusalert.present();
+          this.zone.run(() => {
+          this.avatar = url;
+        })  
+        }  
+      }).catch((err) => {
+          statusalert.setTitle('Failed');
+          statusalert.setSubTitle('Your profile pic was not changed');
+          statusalert.present();
+      })
+      })
+  }
+
+  editname() {
+    let statusalert = this.alertCtrl.create({
+      buttons: ['okay']
+    });
+    let alert = this.alertCtrl.create({
+      title: 'Edit Nickname',
+      inputs: [{
+        name: 'nickname',
+        placeholder: 'Nickname'
+      }],
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: data => {
+
+        }
+      },
+      {
+        text: 'Edit',
+        handler: data => {
+          if (data.nickname) {
+            this.userservice.updatedisplayname(data.nickname).then((res: any) => {
+              if (res.success) {
+                statusalert.setTitle('Updated');
+                statusalert.setSubTitle('Your nickname has been changed successfully!!');
+                statusalert.present();
+                this.zone.run(() => {
+                  this.displayName = data.nickname;
+                })
+              }
+
+              else {
+                statusalert.setTitle('Failed');
+                statusalert.setSubTitle('Your nickname was not changed');
+                statusalert.present();
+              }
+                             
+            })
+          }
+        }
+        
+      }]
+    });
+    alert.present();
+  }
+
+  logout() {
+    firebase.auth().signOut().then(() => {
+      this.navCtrl.parent.parent.setRoot('LoginPage');
+    })
+  }
+
 
 }
+

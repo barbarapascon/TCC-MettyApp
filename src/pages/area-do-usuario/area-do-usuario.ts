@@ -27,7 +27,9 @@ export class AreaDoUsuarioPage {
     public imghandler: ImghandlerProvider) {
   } 
 
-
+ ionViewWillEnter() {
+    this.loaduserdetails();
+  }
   loaduserdetails() {
     this.userservice.getuserdetails().then((res: any) => {
       this.displayName = res.displayName;

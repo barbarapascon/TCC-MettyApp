@@ -34,6 +34,9 @@ import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 import { FileChooser } from "@ionic-native/file-chooser";
 import { ProfilepicPage } from "../pages/profilepic/profilepic";
 import { RequestsProvider } from '../providers/requests/requests';
+import { PasswordresetPage } from "../pages/passwordreset/passwordreset";
+import { GroupProvider } from '../providers/group/group';
+import { NewgroupPage } from "../pages/newgroup/newgroup";
 
 
 @NgModule({
@@ -53,7 +56,9 @@ import { RequestsProvider } from '../providers/requests/requests';
     LoginPage,
     ProfilePage,
     RegisterPage,
-    ProfilepicPage
+    ProfilepicPage,
+    PasswordresetPage,
+      NewgroupPage
     
   ],
   imports: [
@@ -81,7 +86,9 @@ import { RequestsProvider } from '../providers/requests/requests';
      LoginPage,
     ProfilePage,
     RegisterPage,
-    ProfilepicPage
+    ProfilepicPage,
+     PasswordresetPage,
+     NewgroupPage
   ],
   providers: [
     StatusBar,
@@ -95,7 +102,8 @@ import { RequestsProvider } from '../providers/requests/requests';
     File,
     FilePath,
     FileChooser,
-    RequestsProvider
+    RequestsProvider,
+    GroupProvider
   ]
 })
 export class AppModule {}

@@ -6,33 +6,30 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>GrupoLista</ion-title>
+  <ion-header>
+
+  <ion-navbar color="hcolor">
+    <ion-title>Grupos</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addgroup()">
+        <ion-icon name="contacts"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
-
-  <ion-list>
-    <ion-list-header>
-      <!-- AQUI VOCE PODE COLOCAR O INTERESSE COMO PARAMETRO -->
-      Game of Thrones
-    </ion-list-header>
-    <ion-item (click)="irParaGrupoDetalhePage()">Loucos por GOT</ion-item>
-    <ion-item (click)="irParaGrupoDetalhePage()">GOT é hilário</ion-item>
-    <ion-item (click)="irParaGrupoDetalhePage()">Dracarys</ion-item>
-
-    <ion-list-header>
-      <!-- AQUI VOCE PODE COLOCAR O INTERESSE COMO PARAMETRO -->
-    How I Met Your Mother
-    </ion-list-header>
-    <ion-item (click)="irParaGrupoDetalhePage()"> It's going to be legen...</ion-item>
-    <ion-item (click)="irParaGrupoDetalhePage()">Wait for it</ion-item>
-    <ion-item (click)="irParaGrupoDetalhePage()">DARY</ion-item>
-  </ion-list>
-
-
+<ion-content>
+<ion-list no-lines>
+  <ion-list-header>
+    My Groups
+  </ion-list-header>
+  <ion-item *ngFor="let item of allmygroups">
+    <ion-avatar item-left>
+      <img src="{{item.groupimage}}">
+    </ion-avatar>
+    <h3 (click)="openchat(item)">{{item.groupName}}</h3>
+  </ion-item>
+</ion-list>
 </ion-content>

@@ -28,6 +28,7 @@ export class UserProvider {
       this.afireauth.auth.createUserWithEmailAndPassword(newuser.email, newuser.password).then(() => {
         this.afireauth.auth.currentUser.updateProfile({
           displayName: newuser.displayName,
+        
           photoURL: 'https://firebasestorage.googleapis.com/v0/b/myapp-4eadd.appspot.com/o/chatterplace.png?alt=media&token=e51fa887-bfc6-48ff-87c6-e2c61976534e'
         }).then(() => {
           this.firedata.child(this.afireauth.auth.currentUser.uid).set({
