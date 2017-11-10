@@ -15,31 +15,30 @@
           <img src="{{avatar}}">
         </div>
       </ion-avatar>
-      <h2 >{{(profileData | async)?.firstName}} {{(profileData | async)?.lastNme}}</h2>
-   
+      <h2>{{(profileData | async)?.firstName}} {{(profileData | async)?.lastNme}}</h2>
+
       <p>Inglês fluente, Português nativo.</p>
       <p (click)="editname()">{{displayName}}</p>
 
     </ion-item>
 
-   
+
 
     <ion-card-content class="card-background-page">
 
       <p color="grey">INTERESSES</p>
-      <button ion-button class="button">Game of Thrones</button>
+      <ion-item *ngFor="let item of allmytags">
 
-      <button ion-button class="button">Nirvana</button>
-      <button ion-button class="button">Veganismo</button>
-      <button ion-button class="button">Florence and the Machine</button>
-      <button ion-button class="button">RBD</button>
-      <ion-icon name="add-circle" class="iconeadd"></ion-icon>
+        <button ion-button class="button">{{item.tagName}}</button>
+      </ion-item>
+      <ion-icon name="add-circle" class="iconeadd" (click)="addTag()"></ion-icon>
 
       <p>GRUPOS</p>
-      <button ion-button class="button">GRITO</button>
+      <ion-item *ngFor="let item of allmygroups">
 
-      <button ion-button class="button">LDRV</button> <button ion-button class="button">BERRO</button>
-      <ion-icon name="add-circle" class="iconeadd"></ion-icon>
+        <button ion-button class="button" (click)="openchat(item)">{{item.groupName}}</button>
+      </ion-item>
+      <ion-icon name="add-circle" class="iconeadd" (click)="addgroup()" ></ion-icon>
       <div>
         <button ion-button round outline color="danger" (click)="logout()">Logout</button>
       </div>

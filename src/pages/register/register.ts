@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
 import { ProfilepicPage } from "../profilepic/profilepic";
+import { LoginPage } from "../login/login";
 
 @IonicPage()
 @Component({
@@ -49,7 +50,7 @@ export class RegisterPage {
   }  
 
   goback() {
-    this.navCtrl.setRoot('LoginPage');
+    this.navCtrl.setRoot(LoginPage);
   }
 
 }
