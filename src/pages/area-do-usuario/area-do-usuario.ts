@@ -39,20 +39,22 @@ export class AreaDoUsuarioPage {
 
   ionViewWillEnter() {
     this.loaduserdetails();
+    this.carregaGrupos();
     //carregar grupos do usuario
-  
-   
     //carregar tags
+    this.carregaTags();
 
-carregaTags();
+
+  }
+  carregaTags() {
     this.tagsservice.getmyTags();
-    this.events.subscribe('newtags', () => {
+    this.events.subscribe('newtag', () => {
       this.allmytags = this.tagsservice.mytags;
     })
   }
-  carregaTags(){
- this.groupservice.getmygroups();
-  
+  carregaGrupos() {
+    this.groupservice.getmygroups();
+
     this.events.subscribe('newgroup', () => {
       this.allmygroups = this.groupservice.mygroups;
 

@@ -1,5 +1,26 @@
+<!--
+   <ion-range [(ngModel)]="britness">
+      <ion-icon range-left small name="sunny">basico</ion-icon>
+      <ion-icon range-right  name="sunny">avançado</ion-icon>
+    </ion-range>
+
+<ion-list>
+  <ion-list-header>
+    Idiomas
+  </ion-list-header>
+  <ion-item>
+   <p>Ingles: avançado</p>
+  </ion-item>
+  <ion-item>
+   <p>Frances: basico</p>
+  </ion-item>
+  <ion-item>
+   <p>Espanhol: basico</p>
+  </ion-item>
+</ion-list>
+-->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Àrea do Usuário</ion-title>
   </ion-navbar>
 </ion-header>
@@ -8,17 +29,20 @@
 <ion-content>
 
   <ion-card>
-
-    <ion-item>
-      <ion-avatar item-start>
-        <div class="profile-image" (click)="editimage()">
+    <ion-grid class="grid">
+      <ion-avatar item-start align="center">
+        <div align="center" class="profile-image" (click)="editimage()">
           <img src="{{avatar}}">
         </div>
       </ion-avatar>
-      <h2>{{(profileData | async)?.firstName}} {{(profileData | async)?.lastNme}}</h2>
+    </ion-grid>
+    <ion-item>
 
-      <p>Inglês fluente, Português nativo.</p>
-      <p (click)="editname()">{{displayName}}</p>
+      <h1 align="center">{{(profileData | async)?.firstName}} {{(profileData | async)?.lastNme}}</h1>
+
+      <p align="center">Inglês fluente, Português nativo.</p>
+
+      <p (click)="editname()" align="center">{{displayName}} </p>
 
     </ion-item>
 
@@ -38,7 +62,7 @@
 
         <button ion-button class="button" (click)="openchat(item)">{{item.groupName}}</button>
       </ion-item>
-      <ion-icon name="add-circle" class="iconeadd" (click)="addgroup()" ></ion-icon>
+      <ion-icon name="add-circle" class="iconeadd" (click)="addgroup()"></ion-icon>
       <div>
         <button ion-button round outline color="danger" (click)="logout()">Logout</button>
       </div>

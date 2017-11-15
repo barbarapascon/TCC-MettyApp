@@ -21,6 +21,7 @@ export class PasswordresetPage {
 
   ionViewDidLoad() {
    // console.log('ionViewDidLoad PasswordresetPage');
+   
   }
 
   reset() {
