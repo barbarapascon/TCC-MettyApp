@@ -18,6 +18,36 @@
    <p>Espanhol: basico</p>
   </ion-item>
 </ion-list>
+
+
+
+    <ion-list>
+      <ion-list-header>IDIOMAS</ion-list-header>
+      <span color="primary">  basico avancado intermediario</span>
+      <ion-item>
+        <ion-label style="float:left" text-align="left">ingles</ion-label>
+
+        <ion-checkbox color="dark" checked="true"></ion-checkbox>
+        <ion-checkbox color="dark" checked="true"></ion-checkbox>
+        <ion-checkbox color="dark" checked="true"></ion-checkbox>
+
+      </ion-item>
+      <ion-item>
+        <ion-label style="float:left" text-align="left" >Espanhol</ion-label>
+
+        <ion-checkbox color="dark" checked="true"></ion-checkbox>
+        <ion-checkbox color="dark" checked="false"></ion-checkbox>
+        <ion-checkbox color="dark" checked="false"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label style="float:left" text-align="left">Portugues</ion-label>
+
+        <ion-checkbox color="dark" checked="true"></ion-checkbox>
+        <ion-checkbox color="dark" checked="true"></ion-checkbox>
+        <ion-checkbox color="dark" checked="true"></ion-checkbox>
+      </ion-item>
+
+    </ion-list>
 -->
 <ion-header>
   <ion-navbar color="primary">
@@ -32,7 +62,7 @@
     <ion-grid class="grid">
       <ion-avatar item-start align="center">
         <div align="center" class="profile-image" (click)="editimage()">
-          <img src="{{avatar}}">
+          <img src="assets/images/pp.jpg">
         </div>
       </ion-avatar>
     </ion-grid>
@@ -46,28 +76,30 @@
 
     </ion-item>
 
-
-
     <ion-card-content class="card-background-page">
-
+<div>
       <p color="grey">INTERESSES</p>
-      <ion-item *ngFor="let item of allmytags">
+       <ion-icon name="add-circle" class="iconeadd" (click)="addTag()"></ion-icon>
+</div>
+      <ion-item text-wrap>
 
-        <button ion-button class="button">{{item.tagName}}</button>
+        <button  *ngFor="let item of allmytags" ion-button class="button" padding softwrap>{{item.tagName}}</button>
       </ion-item>
-      <ion-icon name="add-circle" class="iconeadd" (click)="addTag()"></ion-icon>
-
-      <p>GRUPOS</p>
-      <ion-item *ngFor="let item of allmygroups">
-
-        <button ion-button class="button" (click)="openchat(item)">{{item.groupName}}</button>
-      </ion-item>
-      <ion-icon name="add-circle" class="iconeadd" (click)="addgroup()"></ion-icon>
+     
       <div>
-        <button ion-button round outline color="danger" (click)="logout()">Logout</button>
+        <p>GRUPOS</p><ion-icon name="add-circle" class="iconeadd" (click)="addgroup()"></ion-icon>
+        </div>
+      
+      <div>
+        <ion-item class="item" text-wrap>
+
+          <button *ngFor="let item of allmygroups" ion-button class="button" (click)="openchat(item)" padding softwrap>{{item.groupName}}</button>
+        </ion-item>
+      
+        
       </div>
     </ion-card-content>
-
+<ion-grid background-color="white"><button ion-button round color="white"  (click)="logout()">Logout</button></ion-grid>
 
   </ion-card>
 

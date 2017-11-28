@@ -13,11 +13,14 @@ page-area-do-usuario {
     border-radius: 50%;
     display: inline-block;
   }
-
+.item{
+word-break: break-all;
+}
   .button {
     border-radius: 8px;
-    background-color: lightpink;
+    background-color: lightcoral;
     font-size: 12px;
+    word-break: break-all;
   }
   .profile-image{
   img{

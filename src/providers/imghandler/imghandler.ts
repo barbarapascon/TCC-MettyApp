@@ -55,7 +55,6 @@ export class ImghandlerProvider {
     })    
      return promise;   
   }
-
   grouppicstore(groupname) {
     var promise = new Promise((resolve, reject) => {
         this.filechooser.open().then((url) => {

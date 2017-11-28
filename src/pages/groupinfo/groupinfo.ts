@@ -12,11 +12,14 @@ import { GroupProvider } from '../../providers/group/group';
 @Component({
   selector: 'page-groupinfo',
   templateUrl: 'groupinfo.html',
+  
 })
 export class GroupinfoPage {
   groupmembers;
+   groupName;
   constructor(public navCtrl: NavController, public navParams: NavParams, public groupservice: GroupProvider,
               public events: Events) {
+                 this.groupName = this.navParams.get('groupName');
   }
 
   ionViewDidLoad() {

@@ -26,8 +26,8 @@ export class ProfilepicPage {
   }
 
   chooseimage() {
-    let loader = this.loadingCtrl.create({
-      content: 'Aguarde'
+     let loader = this.loadingCtrl.create({
+      content: 'Please wait'
     })
     loader.present();
     this.imgservice.uploadimage().then((uploadedurl: any) => {
@@ -38,6 +38,7 @@ export class ProfilepicPage {
       })
     })
   }
+
 
   updateproceed() {
     let loader = this.loadingCtrl.create({

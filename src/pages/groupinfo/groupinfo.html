@@ -1,23 +1,44 @@
 <ion-header>
 
   <ion-navbar color="hcolor">
-    <ion-title>Group Info</ion-title>
+    <ion-title>Informaçoes do Grupo</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content>
+<ion-content class="card-background-page">
+
+
+  <ion-card>
+    <img src="assets/images/marine.jpg" />
+    <div class="card-title">{{groupName}}</div>
+
+  </ion-card>
+
+
+  <ion-card>
+
+    <ion-card-content class="descricao">
+      <p>Grupo de veganos.</p>
+      <p>Grupo para reunir todos os veganos que residem proximos as cidades do ABCD, podendo asim dispertar o interesse pelo assunto alem de treinar ingles.</p>
+
+    </ion-card-content>
+
+  </ion-card>
+
+
+
   <ion-list no-lines>
     <ion-list-header>
-      Group Members
+     Membros do grupo
     </ion-list-header>
     <ion-item *ngFor="let item of groupmembers">
       <ion-avatar item-left>
         <img src="{{item.photoURL}}">
       </ion-avatar>
       <h2>{{item.displayName}}</h2>
-      <p>Member</p>
+      <p>Membro</p>
     </ion-item>
   </ion-list>
 

@@ -4,13 +4,13 @@ import { IonicApp, IonicModule, IonicErrorHandler, IonicPageModule } from 'ionic
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+
 import { HomePage } from '../pages/home/home';
 import { ProfessoresPage } from '../pages/professores/professores';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AreaDoUsuarioPage } from '../pages/area-do-usuario/area-do-usuario';
 import { GrupoListaPage } from '../pages/grupo-lista/grupo-lista';
-import { GrupoDetalhePage } from '../pages/grupo-detalhe/grupo-detalhe';
+
 import { ChatPage } from '../pages/chat/chat';
 import { EscolhaProfessorPage } from '../pages/escolha-professor/escolha-professor';
 import { RegisterPage } from '../pages/register/register';
@@ -48,14 +48,14 @@ import { TagsProvider } from '../providers/tags/tags';
   declarations: [
     MyApp,
     AboutPage,
-    ContactPage,
+
     HomePage,
     TabsPage,
     ProfessoresPage,
     IntroPage,
     AreaDoUsuarioPage,
     GrupoListaPage,
-    GrupoDetalhePage,
+
     ChatPage,
     EscolhaProfessorPage,
     LoginPage,
@@ -82,14 +82,14 @@ import { TagsProvider } from '../providers/tags/tags';
   entryComponents: [
     MyApp,
     AboutPage,
-    ContactPage,
+
     HomePage,
     TabsPage,
     ProfessoresPage,
     IntroPage,
     AreaDoUsuarioPage,
     GrupoListaPage,
-    GrupoDetalhePage,
+
     ChatPage,
     EscolhaProfessorPage,
     LoginPage,

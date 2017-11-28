@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header color="primary">
 
   <ion-navbar color ="primary">
     <ion-title>Chats</ion-title>
@@ -15,7 +15,7 @@
 <ion-content padding>
 <ion-list no-lines>
   <ion-list-header>
-    Requests
+    Pedidos de Amizade
   </ion-list-header>
   <ion-item-sliding *ngFor="let item of myrequests">
     <ion-item>
@@ -36,7 +36,7 @@
     </ion-item-options>
   </ion-item-sliding>
   <ion-list-header>
-    Friends
+    Amigos
   </ion-list-header>
   <ion-item *ngFor="let item of myfriends" (click)="buddychat(item)">
     <ion-avatar item-left>
